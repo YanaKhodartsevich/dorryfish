@@ -9,7 +9,7 @@ namespace TestProject1
         public void ShouldBeInGame_WhenGoesToGame()
         {
             var player = new Player();
-            player.GoToGame();
+            player.JoinGame();
             Assert.True(player.InGame);
         }
         
@@ -27,6 +27,14 @@ namespace TestProject1
             var player = new Player();
             player.LeaveGame();
             Assert.True(player.CantLeaveGame);
+        }   
+        
+        [Test]
+        public void ShouldCanPlayOnlyOneGame_WhenIsInGame()
+        {
+            var player = new Player();
+            player.JoinGame();
+            Assert.AreEqual(1, player.JoinedGamesNumber);
         }
     }
 }
