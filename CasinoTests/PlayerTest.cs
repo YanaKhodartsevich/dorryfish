@@ -13,14 +13,4 @@ namespace TestProject1
             Assert.True(player.InGame);
         }
     }
-
-    public class Player
-    {
-        public bool? InGame { get; set; }
-
-        public void GoToGame()
-        {
-            InGame = true;
-        }
-    }
 }
