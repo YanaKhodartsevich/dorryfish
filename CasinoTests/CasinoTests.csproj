@@ -42,6 +42,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Game.cs" />
     <Compile Include="GameTest.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayerTest.cs" />
