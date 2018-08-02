@@ -7,6 +7,9 @@ namespace TestProject1
         public bool? InGame { get; set; }
         public bool? CantLeaveGame { get; set; }
         public int? JoinedGamesNumber { get; set; }
+        public int ChipsNumber { get; set; }
+        public bool? CanBuyChips { get; set; }
+        public bool CanBet { get; set; }
 
         public void JoinGame(int? number = 1)
         {
@@ -30,6 +33,24 @@ namespace TestProject1
             else
             {
                 CantLeaveGame = true;
+            }
+        }
+
+        public void DoBet()
+        {
+            CanBuyChips = true;
+        }
+
+        public void BuyChips(int chipsNumber)
+        {
+            if (chipsNumber > 0)
+            {
+                ChipsNumber = chipsNumber;
+                CanBet = true;
+            }
+            else
+            {
+                throw new ArgumentException("You want not enough chips. Buy more");
             }
         }
     }
