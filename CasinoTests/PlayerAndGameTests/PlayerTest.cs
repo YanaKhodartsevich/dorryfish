@@ -1,70 +1,105 @@
 ﻿using NUnit.Framework;
 
-namespace TestProject1
+namespace CasinoTests
 {
     [TestFixture]
     public class PlayerTest
     {
         [Test]
-        public void ShouldBeInGame_WhenGoesToGame()
+        public void CanBeInGame_WhenGoesToGame()
         {
-            var player = new Player();
+            Player player = CreatePlayer()
+                .Please();
             player.JoinGame();
             Assert.True(player.InGame);
         }
 
         [Test]
-        public void ShouldNotBeInGame_WhenLeaveGame()
+        public void CanNotBeInGame_WhenLeaveGame()
         {
-            var player = new Player();
+            Player player = CreatePlayer()
+                .ThatJoinedGame()
+                .Please();
             player.LeaveGame();
             Assert.False(player.InGame);
         }
 
         [Test]
-        public void ShouldNotLeaveGame_WhenIsNotInGame()
+        public void CanNotLeaveGame_WhenIsNotInGame()
         {
-            var player = new Player();
+            Player player = CreatePlayer()
+                .Please();
             player.LeaveGame();
             Assert.True(player.CantLeaveGame);
         }
 
         [Test]
-        public void ShouldCanPlayOnlyOneGame_WhenIsInGame()
+        public void CanPlayOnlyOneGame_WhenIsInGame()
         {
-            var player = new Player();
+            Player player = CreatePlayer()
+                .Please();
             player.JoinGame();
-            Assert.AreEqual(1, player.JoinedGamesNumber);
+            Assert.AreEqual(1, player.JoinedGamesCount);
         }
 
         [Test]
-        public void SholdBeAbleBuyChips_WhenDoBet()
+        public void CanMakeBets_WhenBuyChipsFromCasino()
         {
-            var player = new Player();
-            player.DoBet();
-            Assert.True(player.CanBuyChips);
-        }
-
-        [Test]
-        public void SholdBeAbleToMakeBets_WhenBuyChipsFromCasino()
-        {
-            var player = new Player();
-            player.BuyChips(0);
+            Player player = CreatePlayer()
+                .WithChipsNumber(1)
+                .Please();
+            player.BuyChips(7);
             Assert.True(player.CanBet);
         }
 
-        
-        
-//        internal class PlayerBuilder
-//        {
-//            private DateTime? openingDate;
-//            private PizzeriaFormat pizzeriaFormat;
-//
-//            public PlayerBuilder ThatIsNotOpened()
-//            {
-//                openingDate = null;
-//                return this;
-//            }
-//        }
+        [Test]
+        public void CanBetNoMoreChipsThanHas_WhenPlayGame()
+        {
+            Player player = CreatePlayer()
+                .WithChipsNumber(3)
+                .WithBet(2)
+                .Please();
+
+            Assert.That(player.Bet <= player.HasChipsNumber);
+        }
+
+        private PlayerBuilder CreatePlayer()
+        {
+            return new PlayerBuilder();
+        }
+
+        internal class PlayerBuilder
+        {
+            private int HasChipsNumber { get; set; }
+            private int Bet { get; set; }
+            private bool InGame { get; set; }
+            private int JoinedGamesCount { get; set; }
+            private bool CanBet { get; set; }
+
+            public PlayerBuilder WithChipsNumber(int chipsNumber)
+            {
+                HasChipsNumber = chipsNumber;
+                CanBet = true;
+                return this;
+            }
+
+            public PlayerBuilder WithBet(int chipsNumber)
+            {
+                Bet = chipsNumber;
+                return this;
+            }
+
+            public PlayerBuilder ThatJoinedGame()
+            {
+                InGame = true;
+                JoinedGamesCount = 1;
+                return this;
+            }
+
+            public Player Please()
+            {
+                return new Player(InGame, null, JoinedGamesCount, HasChipsNumber, null, CanBet, Bet);
+            }
+        }
     }
 }

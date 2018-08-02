@@ -1,4 +1,4 @@
-﻿namespace TestProject1
+﻿namespace CasinoTests
 {
     public class Game
     {
