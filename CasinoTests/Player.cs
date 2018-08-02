@@ -3,15 +3,23 @@
     public class Player
     {
         public bool? InGame { get; set; }
+        public bool? CantLeaveGame { get; set; }
 
         public void GoToGame()
         {
             InGame = true;
         }
-        
+
         public void LeaveGame()
         {
-            InGame = false;
+            if (InGame is true)
+            {
+                InGame = false;
+            }
+            else
+            {
+                CantLeaveGame = true;
+            }
         }
     }
 }
