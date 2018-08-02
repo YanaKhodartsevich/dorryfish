@@ -6,16 +6,16 @@ namespace TestProject1
     {
         public bool? InGame { get; set; }
         public bool? CantLeaveGame { get; set; }
-        public int JoinedGamesNumber { get; set; }
+        public int? JoinedGamesNumber { get; set; }
 
-        public void JoinGame()
+        public void JoinGame(int? number = 1)
         {
-            if (JoinedGamesNumber == 0)
+            if (number == 1)
             {
                 InGame = true;
-                JoinedGamesNumber += 1;
+                JoinedGamesNumber = 1;
             }
-            else 
+            else
             {
                 throw new ArgumentException("You can join only one game at a time");
             }

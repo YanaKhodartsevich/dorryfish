@@ -36,5 +36,6 @@ namespace TestProject1
             player.JoinGame();
             Assert.AreEqual(1, player.JoinedGamesNumber);
         }
+
     }
 }
