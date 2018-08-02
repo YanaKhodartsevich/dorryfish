@@ -22,7 +22,7 @@ namespace TestProject1
         }   
         
         [Test]
-        public void ShouldNotCanLeaveGame_WhenIsNotInGame()
+        public void ShouldNotLeaveGame_WhenIsNotInGame()
         {
             var player = new Player();
             player.LeaveGame();
