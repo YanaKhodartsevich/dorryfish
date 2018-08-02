@@ -8,5 +8,10 @@
         {
             InGame = true;
         }
+        
+        public void LeaveGame()
+        {
+            InGame = false;
+        }
     }
 }

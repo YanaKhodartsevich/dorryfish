@@ -12,5 +12,13 @@ namespace TestProject1
             player.GoToGame();
             Assert.True(player.InGame);
         }
+        
+        [Test]
+        public void ShouldNotBeInGame_WhenLeaveGame()
+        {
+            var player = new Player();
+            player.LeaveGame();
+            Assert.False(player.InGame);
+        }
     }
 }
