@@ -6,31 +6,43 @@ namespace CasinoTests
     {
         public bool? InGame { get; set; }
         public bool? CantLeaveGame { get; set; }
-        public int? JoinedGamesCount { get; set; }
+//        public int? JoinedGamesCount { get; set; }
         public int HasChipsNumber { get; set; }
         public bool? CanBuyChips { get; set; }
         public bool? CanBet { get; set; }
-        public int Bet { get; set; }
         public bool? Win { get; set; }
+        public int? BetNumber { get; set; }
 
-        public Player(bool? inGame, bool? cantLeaveGame, int? joinedGamesCount, int hasChipsNumber, bool? canBuyChips,
-            bool? canBet, int bet)
+        public Player(bool? inGame, bool? cantLeaveGame, int hasChipsNumber, bool? canBuyChips,
+            bool? canBet, int betNumber)
         {
             InGame = inGame;
             CantLeaveGame = cantLeaveGame;
-            JoinedGamesCount = joinedGamesCount;
+//            JoinedGamesCount = joinedGamesCount;
             HasChipsNumber = hasChipsNumber;
             CanBuyChips = canBuyChips;
             CanBet = canBet;
-            Bet = bet;
+            BetNumber = betNumber;
         }
-
-        public void JoinGame(int? number = 1)
+//
+//        public void JoinGame(int? number = 1)
+//        {
+//            if (number == 1)
+//            {
+//                InGame = true;
+//                JoinedGamesCount = 1;
+//            }
+//            else
+//            {
+//                throw new ArgumentException("You can join only one game at a time");
+//            }
+//        }
+        
+        public void JoinGame()
         {
-            if (number == 1)
+            if (!InGame == true)
             {
                 InGame = true;
-                JoinedGamesCount = 1;
             }
             else
             {
@@ -63,8 +75,14 @@ namespace CasinoTests
             }
         }
 
-        public void PlayDiceGame()
+//        public void PlayDiceGame(int betNumber)
+//        {
+//            
+////            throw new NotImplementedException();
+//        }
+        public void Bet()
         {
+            BetNumber = 1;
 //            throw new NotImplementedException();
         }
     }
