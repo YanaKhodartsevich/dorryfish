@@ -9,13 +9,13 @@ namespace CasinoTests
         public void CanBeInGame_WhenGoesToGame()
         {
             Player player = CreatePlayer()
-                .Please();
+                .Please();  
             player.JoinGame();
             Assert.True(player.InGame);
         }
 
         [Test]
-        public void CanNotBeInGame_WhenLeaveGame()
+        public void CanNotBeInGame_WhenLeavesGame()
         {
             Player player = CreatePlayer()
                 .ThatJoinedGame()
@@ -43,7 +43,7 @@ namespace CasinoTests
         }
 
         [Test]
-        public void CanMakeBets_WhenBuyChipsFromCasino()
+        public void CanMakeBets_WhenBuysChipsFromCasino()
         {
             Player player = CreatePlayer()
                 .WithChipsNumber(1)
@@ -51,9 +51,19 @@ namespace CasinoTests
             player.BuyChips(7);
             Assert.True(player.CanBet);
         }
+        
+        
+        [Test]
+        public void CanWin_WhenPlaysDiceGame()
+        {
+            var player = CreatePlayer()
+                .Please();
+            player.PlayDiceGame();
+            Assert.True(player.Win);
+        }
 
         [Test]
-        public void CanBetNoMoreChipsThanHas_WhenPlayGame()
+        public void CanBetNoMoreChipsThanHas_WhenPlaysGame()
         {
             Player player = CreatePlayer()
                 .WithChipsNumber(3)

@@ -11,6 +11,7 @@ namespace CasinoTests
         public bool? CanBuyChips { get; set; }
         public bool? CanBet { get; set; }
         public int Bet { get; set; }
+        public bool? Win { get; set; }
 
         public Player(bool? inGame, bool? cantLeaveGame, int? joinedGamesCount, int hasChipsNumber, bool? canBuyChips,
             bool? canBet, int bet)
@@ -48,11 +49,6 @@ namespace CasinoTests
                 CantLeaveGame = true;
             }
         }
-//
-//        public void DoBet()
-//        {
-//            CanBuyChips = true;
-//        }
 
         public void BuyChips(int chipsNumber)
         {
@@ -65,6 +61,11 @@ namespace CasinoTests
             {
                 throw new ArgumentException("You want not enough chips. Buy more");
             }
+        }
+
+        public void PlayDiceGame()
+        {
+//            throw new NotImplementedException();
         }
     }
 }
